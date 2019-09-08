@@ -1,4 +1,4 @@
-package com.jobsity;
+package com.jobsity.bowling.model;
 
 import java.util.ArrayList;
 import java.util.List;
