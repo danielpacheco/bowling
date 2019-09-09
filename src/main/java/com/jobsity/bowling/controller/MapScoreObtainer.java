@@ -29,7 +29,8 @@ public class MapScoreObtainer implements ScoreObtainer {
 
                 List<Integer> playerPins = player.getPinsList();
                 List<Pinfalls> playerPinfalls = player.getPinfallsList();
-                for (int pinIndex = 0; pinIndex < playerPins.size(); ) {
+                int frame = 0;
+                for (int pinIndex = 0; pinIndex < playerPins.size() && frame++ <= 10; ) {
 
                     //set pinfalls
                     Integer pins = playerPins.get(pinIndex);
@@ -95,7 +96,7 @@ public class MapScoreObtainer implements ScoreObtainer {
                 int pinsIndex = 0;
                 int frame = 0;
                 int score = 0;
-                for (; pinsIndex < playerPins.size(); ) {
+                for (; pinsIndex < playerPins.size() && frame <= 10; ) {
 
                     Pinfalls pinfalls = playerPinfalls.get(frame++);
                     if (pinfalls.getFirst() == STRIKE) {
