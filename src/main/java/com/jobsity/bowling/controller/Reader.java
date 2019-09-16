@@ -5,5 +5,5 @@ import java.util.Map;
 
 public interface Reader {
 
-    public Map<String, List<Integer>> read(String fileName);
+    Map<String, List<Integer>> read(String fileName);
 }

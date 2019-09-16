@@ -35,3 +35,4 @@ To run tests:
 
 After building, you can run the jar like this:
     **java -cp build/libs/bowling-0.0.1-SNAPSHOT.jar com.jobsity.bowling.Bowling plays1.txt**
+    or **java -jar build/libs/bowling-0.0.1-SNAPSHOT.jar playsInPDF.txt**

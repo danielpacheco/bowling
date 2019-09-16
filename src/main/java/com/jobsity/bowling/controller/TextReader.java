@@ -20,10 +20,11 @@ public class TextReader implements Reader {
 
 
         Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current relative path is: " + s);
+        String relativePath = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current relative path is: " + relativePath);
 
         try {
+
             Stream<String> lines = Files.lines(Paths.get(fileName));
             Map<String, List<Integer>> players = processLines(lines);
             return players;
@@ -49,10 +50,13 @@ public class TextReader implements Reader {
                 List<Integer> pinsList = players.get(playerName);
 
                 Integer pins = MapScoreObtainer.FOUL;
-                if (!playerPins.contains("F"))
+                if (!playerPins.contains("F")) {
+
                     pins = Integer.valueOf(playerPins);
+                }
 
                 if (pinsList == null) {
+
                     pinsList = new ArrayList<>();
                 }
                 pinsList.add(pins);

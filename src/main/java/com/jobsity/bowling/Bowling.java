@@ -1,8 +1,11 @@
 package com.jobsity.bowling;
 
+import com.jobsity.bowling.controller.Reader;
+import com.jobsity.bowling.controller.ScoreObtainer;
 import com.jobsity.bowling.model.Player;
 import com.jobsity.bowling.controller.TextReader;
 import com.jobsity.bowling.controller.MapScoreObtainer;
+import com.jobsity.bowling.view.Renderer;
 import com.jobsity.bowling.view.TextRenderer;
 
 import java.util.List;
@@ -40,10 +43,14 @@ public class Bowling {
      */
     public static void main(String[] args) {
 
-        Map<String, List<Integer>> playersMap = new TextReader().read(args[0]);
-        MapScoreObtainer scoreObtainer = new MapScoreObtainer();
+        Reader textReader = new TextReader();
+        Map<String, List<Integer>> playersMap = textReader.read(args[0]);
+
+        ScoreObtainer scoreObtainer = new MapScoreObtainer();
         Map<String, Player> players = scoreObtainer.getPinFalls(playersMap);
         players = scoreObtainer.getScore(players);
-        new TextRenderer().render(players);
+
+        Renderer renderer = new TextRenderer();
+        renderer.render(players);
     }
 }

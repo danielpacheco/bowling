@@ -22,10 +22,13 @@ public class TextRenderer implements Renderer {
 
                 Integer first = pinfall.getFirst();
                 display(first);
-                if (first != MapScoreObtainer.STRIKE)
+                if (first != MapScoreObtainer.STRIKE) {
+
                     display(pinfall.getSecond());
-                else
+                } else {
+
                     System.out.print("\t");
+                }
             });
             System.out.println();
             List<Integer> scoreList = player.getScoreList();
@@ -41,12 +44,16 @@ public class TextRenderer implements Renderer {
     private void display(Integer pinfall) {
 
         if (pinfall == MapScoreObtainer.STRIKE) {
+
             System.out.print("X\t");
         } else if (pinfall == MapScoreObtainer.SPARE) {
+
             System.out.print("/\t");
         } else if (pinfall == MapScoreObtainer.FOUL) {
+
             System.out.print("F\t");
         } else {
+
             System.out.print(pinfall+"\t");
         }
     }

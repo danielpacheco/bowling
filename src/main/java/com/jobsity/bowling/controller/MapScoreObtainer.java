@@ -24,6 +24,7 @@ public class MapScoreObtainer implements ScoreObtainer {
                 //initialize players
                 Player player = players.get(playerName);
                 if (player == null) {
+
                     player = new Player(pinsList);
                 }
 
@@ -33,10 +34,12 @@ public class MapScoreObtainer implements ScoreObtainer {
                 for (int pinIndex = 0; pinIndex < playerPins.size() && frame++ <= 10; ) {
 
                     //set pinfalls
-                    Integer pins = playerPins.get(pinIndex);
-                    Integer nextPins = 0;
-                    if ((pinIndex + 1) < playerPins.size())
+                    int pins = playerPins.get(pinIndex);
+                    int nextPins = 0;
+                    if ((pinIndex + 1) < playerPins.size()) {
+
                         nextPins = playerPins.get(pinIndex + 1);
+                    }
                     Pinfalls pinfalls = new Pinfalls();
 
                     if (pins == 10) {
@@ -52,10 +55,14 @@ public class MapScoreObtainer implements ScoreObtainer {
                     } else if (pins >= 0) {
 
                         pinfalls.setFirst(pins);
-                        if (pins+nextPins == 10)
+                        if (pins+nextPins == 10) {
+
                             pinfalls.setSecond(SPARE);
-                        else
+
+                        } else {
+
                             nextPins(nextPins, pinfalls);
+                        }
                         pinIndex += 2;
 
                     }
@@ -68,14 +75,18 @@ public class MapScoreObtainer implements ScoreObtainer {
             return players;
         }
 
-    private void nextPins(Integer nextPins, Pinfalls pinfalls) {
+    private void nextPins(int nextPins, Pinfalls pinfalls) {
 
-        if (nextPins == 10)
+        if (nextPins == 10) {
+
             pinfalls.setSecond(STRIKE);
-        else if (nextPins == FOUL)
+        } else if (nextPins == FOUL) {
+
             pinfalls.setSecond(FOUL);
-        else
+        } else {
+
             pinfalls.setSecond(nextPins);
+        }
     }
 
     /**
@@ -99,39 +110,52 @@ public class MapScoreObtainer implements ScoreObtainer {
                 for (; pinsIndex < playerPins.size() && frame <= 10; ) {
 
                     Pinfalls pinfalls = playerPinfalls.get(frame++);
-                    if (pinfalls.getFirst() == STRIKE) {
+                    if (pinfalls.getFirst().equals(STRIKE)) {
 
                         score += 10;
-                        if ((pinsIndex + 1) < playerPins.size())
-                            score += playerPins.get(pinsIndex+1);
-                        if ((pinsIndex + 2) < playerPins.size())
-                            score += playerPins.get(pinsIndex+2);
+                        if ((pinsIndex + 1) < playerPins.size()) {
+
+                            score += playerPins.get(pinsIndex + 1);
+                        }
+                        if ((pinsIndex + 2) < playerPins.size()) {
+
+                            score += playerPins.get(pinsIndex + 2);
+                        }
                         ++pinsIndex;
 
-                    } else if (pinfalls.getFirst() == FOUL) {
+                    } else if (pinfalls.getFirst().equals(FOUL)) {
 
-                        if (((pinsIndex + 1) < playerPins.size()) && playerPins.get(pinsIndex+1) > 0)
-                            score += playerPins.get(pinsIndex+1);
+                        if (((pinsIndex + 1) < playerPins.size()) && playerPins.get(pinsIndex+1) > 0) {
+
+                            score += playerPins.get(pinsIndex + 1);
+                        }
                         pinsIndex += 2;
 
                     } else {
 
                         score += playerPins.get(pinsIndex);
                         int nextPins = 0;
-                        if ((pinsIndex + 1) < playerPins.size())
-                            nextPins = playerPins.get(pinsIndex+1);
+                        if ((pinsIndex + 1) < playerPins.size()) {
 
-                        if (pinfalls.getSecond() == SPARE) {
+                            nextPins = playerPins.get(pinsIndex + 1);
+                        }
+
+                        if (pinfalls.getSecond().equals(SPARE)) {
 
                             score += nextPins;
                             if ((pinsIndex + 2) < playerPins.size()) {
+
                                 int nextNext = playerPins.get(pinsIndex + 2);
-                                if (nextNext != FOUL)
+                                if (nextNext != FOUL) {
+
                                     score += nextNext;
+                                }
                             }
 
-                        } else
+                        } else {
+
                             score += nextPins;
+                        }
 
                         pinsIndex += 2;
 
