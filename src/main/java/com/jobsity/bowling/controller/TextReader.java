@@ -1,27 +1,26 @@
 package com.jobsity.bowling.controller;
 
+import com.jobsity.bowling.model.PlaysFileNotFoundException;
+
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-import static com.jobsity.bowling.controller.Validator.areTokensValid;
+import static com.jobsity.bowling.controller.FileValidator.areTokensValid;
 
 public class TextReader implements Reader {
 
+    private static final Logger LOGGER = Logger.getLogger(TextReader.class.getName());
+
     @Override
     public Map<String, List<Integer>> read(String fileName) {
-
-
-        Path currentRelativePath = Paths.get("");
-        String relativePath = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current relative path is: " + relativePath);
 
         try {
 
@@ -30,7 +29,9 @@ public class TextReader implements Reader {
             return players;
 
         } catch (IOException e) {
-            e.printStackTrace();
+
+            LOGGER.severe(new PlaysFileNotFoundException().getClass().getName());
+            System.exit(0);
         }
         return null;
     }

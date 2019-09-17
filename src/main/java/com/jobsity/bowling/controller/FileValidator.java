@@ -1,8 +1,13 @@
 package com.jobsity.bowling.controller;
 
-import java.util.Arrays;
+import com.jobsity.bowling.model.FileValidatorException;
 
-public class Validator {
+import java.util.Arrays;
+import java.util.logging.Logger;
+
+public class FileValidator {
+
+    private static final Logger LOGGER = Logger.getLogger(FileValidator.class.getName());
 
     public static boolean areTokensValid(String[] tokens, int i) throws RuntimeException {
 
@@ -35,12 +40,15 @@ public class Validator {
                     }
 
                 } catch (NumberFormatException e) {
+
                     throwError(tokens, i, "Invalid number of pins");
                 }
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+
+            LOGGER.severe(e.getClass().getName() + e.getMessage());
+            System.exit(0);
         }
 
         return true;
@@ -48,7 +56,7 @@ public class Validator {
 
     public static void throwError(String[] tokens, int i, String msg) throws Exception {
 
-        throw new Exception(msg + ", in line: " + i + " - "+ Arrays.toString(tokens));
+        throw new FileValidatorException(msg + ", in line: " + i + " - "+ Arrays.toString(tokens));
     }
 
 }

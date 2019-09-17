@@ -18,7 +18,7 @@ public class TextRenderer implements Renderer {
             System.out.println(playerName);
             System.out.print("Pinfalls\t");
             List<Pinfalls> pinfallsList = player.getPinfallsList();
-            pinfallsList.forEach((pinfall) -> {
+            for (Pinfalls pinfall : pinfallsList) {
 
                 Integer first = pinfall.getFirst();
                 display(first);
@@ -29,7 +29,7 @@ public class TextRenderer implements Renderer {
 
                     System.out.print("\t");
                 }
-            });
+            }
             System.out.println();
             List<Integer> scoreList = player.getScoreList();
             System.out.print("Score\t\t");
