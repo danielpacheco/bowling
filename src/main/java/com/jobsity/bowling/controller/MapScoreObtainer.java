@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class MapScoreObtainer implements ScoreObtainer {
 
-    private static final Logger LOGGER = Logger.getLogger(MapScoreObtainer.class.getName());
+    public static final Logger LOGGER = Logger.getLogger(MapScoreObtainer.class.getName());
 
     /**
      * Get pinfalls per player
@@ -50,10 +50,6 @@ public class MapScoreObtainer implements ScoreObtainer {
 
                         if (pins == 10) {
 
-                            if (nextPins != 0) {
-                                throw new ScoreMoreThanTenException(playerName, frame);
-                            }
-
                             pinfalls.setFirst(STRIKE);
                             pinIndex += 1;
 
@@ -76,7 +72,7 @@ public class MapScoreObtainer implements ScoreObtainer {
 
                             } else {
 
-                                if (pins + nextPins < 10) {
+                                if (pins + nextPins > 10) {
                                     throw new ScoreMoreThanTenException(playerName, frame);
                                 }
 
@@ -93,7 +89,7 @@ public class MapScoreObtainer implements ScoreObtainer {
                 } catch (Exception e) {
 
                     LOGGER.severe(e.getClass().getName() + e.getMessage());
-                    System.exit(0);
+                    throw new RuntimeException(e);
                 }
             });
 

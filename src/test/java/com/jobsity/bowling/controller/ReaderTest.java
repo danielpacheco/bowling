@@ -6,10 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ReaderTest {
 
+    /**
+     * Most common test cases for lines in file
+     */
     @Test
     public void processLinesTest() {
 

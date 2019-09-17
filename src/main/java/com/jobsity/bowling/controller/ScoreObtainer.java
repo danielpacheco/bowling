@@ -14,4 +14,5 @@ public interface ScoreObtainer {
     Map<String, Player> getPinFalls(Map<String, List<Integer>> playersMap);
 
     Map<String, Player> getScore(Map<String, Player> players);
+
 }

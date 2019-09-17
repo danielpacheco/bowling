@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-import static com.jobsity.bowling.controller.FileValidator.areTokensValid;
+import static com.jobsity.bowling.controller.TokenValidator.areTokensValid;
 
 public class TextReader implements Reader {
 
